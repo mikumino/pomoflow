@@ -1,13 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FlowtimeFocus from './FlowtimeFocus';
 import FlowtimeBreak from './FlowtimeBreak';
 
 const App = () => {
     const [mode, setMode] = useState<'Focus' | 'Break'>('Focus');
     const [breakTime, setBreakTime] = useState(0);
+    const [breakTimeMultiplier, setBreakTimeMultiplier] = useState(0.2);
+
+    useEffect(() => {
+        const savedBreakTimeMultiplier = localStorage.getItem('breakTimeMultiplier');
+        if (savedBreakTimeMultiplier) {
+            setBreakTimeMultiplier(parseFloat(savedBreakTimeMultiplier));
+        }
+
+        // This doesn't work because the event is only fired on other tabs
+        // Try useContext instead? 
+        const handleSettingsChange = (e: StorageEvent) => {
+            if (e.key === 'breakTimeMultiplier') {
+                console.log("CHAT");
+                
+                setBreakTimeMultiplier(parseFloat(e.newValue as string));
+            }
+        }
+
+        window.addEventListener('storage', handleSettingsChange);
+
+        return () => window.removeEventListener('storage', handleSettingsChange);
+    }, []);
 
     const handleEndFocus = (focusTime: number) => {
-        setBreakTime(Math.floor(focusTime / 5));
+        setBreakTime(Math.floor(focusTime * breakTimeMultiplier));
+        console.log(breakTime);
         setMode('Break');
     };
 
