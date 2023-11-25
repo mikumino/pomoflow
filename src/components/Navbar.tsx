@@ -1,3 +1,4 @@
+import { IoIosSettings } from "react-icons/io";
 const Navbar = () => {
     return (
         <div className="navbar absolute max-w-3xl mx-auto">
@@ -7,11 +8,10 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="navbar-center">
-
             </div>
             <div className="navbar-end">
                 <div className="btn btn-ghost">
-                    <iconify-icon className="text-primary" icon="ic:round-settings"></iconify-icon>
+                    <IoIosSettings className="text-primary text-2xl" />
                 </div>
             </div>
         </div>
