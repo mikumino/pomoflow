@@ -52,7 +52,7 @@ export default function Stopwatch() {
                 <h2 className={`btn mr-2 px-11 ${flowBreak == "flow" ? 'btn-primary' : 'btn-outline'}`} onClick={setFlow}>Flow</h2>
                 <h2 className={`btn px-11 ${flowBreak == "break" ? 'btn-primary': 'btn-outline'}`} onClick={setBreak}>Break</h2>
             </div>
-            <div className="flex flex-row items-center justify-center mb-6">
+            <div className="flex flex-row items-center justify-center mb-7">
                 <h1 className="text-6xl sm:text-8xl font-bold text-center">{msToTime(time)}</h1>
             </div>
             <div className="flex flex-row items-center justify-center">
