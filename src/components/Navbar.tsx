@@ -1,4 +1,6 @@
-import { IoIosSettings } from "react-icons/io";
+import React from "react";
+import Settings from "./Settings";
+
 const Navbar = () => {
     return (
         <div className="navbar absolute max-w-3xl mx-auto">
@@ -10,9 +12,7 @@ const Navbar = () => {
             <div className="navbar-center">
             </div>
             <div className="navbar-end">
-                <div className="btn btn-ghost">
-                    <IoIosSettings className="text-primary text-2xl" />
-                </div>
+                <Settings />
             </div>
         </div>
     )
