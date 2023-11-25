@@ -1,0 +1,21 @@
+---
+import Navbar from '../components/Navbar.astro'
+import Stopwatch from '../components/Stopwatch'
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>PomoFlow</title>
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+	</head>
+	<body class="max-w-3xl mx-auto h-screen flex flex-col">
+        <Navbar />
+		<main class="flex justify-center items-center flex-grow">
+            <Stopwatch client:load />
+        </main>
+	</body>
+</html>
