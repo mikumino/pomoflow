@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import TimeDisplay from './TimeDisplay';
 import Controls from './Controls';
 
-const Flowtime = () => {
+interface FlowTimeFocusProps {
+    handleEndFocus: (focusTime: number) => void;
+}
+
+const FlowtimeFocus = ({ handleEndFocus }: FlowTimeFocusProps) => {
     const [time, setTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
 
@@ -25,7 +29,7 @@ const Flowtime = () => {
     };
 
     const handleStop = () => {
-        setIsRunning(false);
+        handleEndFocus(time);
     };
 
     const handleReset = () => {
@@ -40,4 +44,4 @@ const Flowtime = () => {
     );
 }
 
-export default Flowtime;
+export default FlowtimeFocus;

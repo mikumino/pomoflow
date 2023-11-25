@@ -1,6 +1,6 @@
 ---
 import Navbar from '../components/Navbar.astro'
-import Flowtime from '../components/Flowtime';
+import App from '../components/App'
 ---
 
 <html lang="en">
@@ -15,7 +15,7 @@ import Flowtime from '../components/Flowtime';
 	<body class="max-w-3xl mx-auto h-screen flex flex-col">
         <Navbar />
 		<main class="flex justify-center items-center flex-grow">
-            <Flowtime client:load />
+            <App client:load />
         </main>
 	</body>
 </html>
