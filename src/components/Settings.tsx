@@ -13,7 +13,7 @@ const Settings = () => {
             <div className="btn btn-ghost" onClick={handleOpen}>
                 <IoIosSettings className="text-primary text-2xl" />
             </div>
-            <dialog id="settings" ref={settingsRef} className="modal" >
+            <dialog id="settings" ref={settingsRef} className="modal outline-none" >
                 <div className="modal-box">
                     <h1 className="text-2xl font-bold mb-4">Settings</h1>
                 </div>
