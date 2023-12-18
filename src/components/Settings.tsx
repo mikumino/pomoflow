@@ -3,27 +3,30 @@ import { IoIosSettings } from "react-icons/io";
 
 const Settings = () => {
     const settingsRef = useRef<HTMLDialogElement | null>(null);
+    const [alarmSound, setAlarmSound] = useState('Classic');
     const [breakTimeMultiplier, setBreakTimeMultiplier] = useState(0.2);
     const [autostartTimers, setAutostartTimers] = useState(false);
-
-    useEffect(() => {
-        const savedBreakTimeMultiplier = localStorage.getItem('breakTimeMultiplier');
-        const savedAutostartTimers = localStorage.getItem('autostartTimers');
-        if (savedBreakTimeMultiplier) {
-            setBreakTimeMultiplier(parseFloat(savedBreakTimeMultiplier));
-        }
-        if (savedAutostartTimers) {
-            setAutostartTimers(savedAutostartTimers === 'true');
-        }
-    }, []);
 
     const handleOpen = () => {
         if (settingsRef.current) {
             settingsRef.current.showModal();
+            const savedAlarmSound = localStorage.getItem('alarmSound');
+            const savedBreakTimeMultiplier = localStorage.getItem('breakTimeMultiplier');
+            const savedAutostartTimers = localStorage.getItem('autostartTimers');
+            if (savedAlarmSound) {
+                setAlarmSound(savedAlarmSound);
+            }
+            if (savedBreakTimeMultiplier) {
+                setBreakTimeMultiplier(parseFloat(savedBreakTimeMultiplier));
+            }
+            if (savedAutostartTimers) {
+                setAutostartTimers(savedAutostartTimers === 'true');
+            }
         }
     }
 
     const handleSave = () => {
+        localStorage.setItem('alarmSound', alarmSound);
         localStorage.setItem('breakTimeMultiplier', breakTimeMultiplier.toString());
         localStorage.setItem('autostartTimers', autostartTimers.toString());
     }
@@ -36,6 +39,13 @@ const Settings = () => {
             <dialog id="settings" ref={settingsRef} className="modal outline-none" >
                 <div className="modal-box">
                     <h1 className="text-3xl font-bold mb-4">Settings</h1>
+                    <h2 className="font-bold mb-2">General</h2>
+                    <h3>Alarm Sound</h3>
+                    <p className="text-xs mb-2">The sound that plays when the timer ends</p>
+                    <select className="select select-bordered w-full mb-4" onChange={(e) => setAlarmSound(e.target.value)} value={alarmSound}>
+                        <option>Classic</option>
+                        <option>Higurashi</option>
+                    </select>
                     <h2 className="font-bold mb-2">Flowtime</h2>
                     <h3>Break Time Multiplier</h3>
                     <p className="text-xs mb-2">The number multiplied against focus time to get break time (Default: 0.2)</p>
@@ -43,6 +53,7 @@ const Settings = () => {
                     <h3>Autostart Timers</h3>
                     <p className="text-xs mb-2">Autostart timer when switching between focus and break (Default: false)</p>
                     <input type="checkbox" className="toggle" checked={autostartTimers} onChange={(e) => setAutostartTimers(e.target.checked)} />
+
                     <div className="modal-action">
                         <form method="dialog">
                             <button className="btn btn-primary" onClick={handleSave}>Save</button>
