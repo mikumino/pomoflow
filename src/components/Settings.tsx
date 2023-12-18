@@ -3,10 +3,18 @@ import { IoIosSettings } from "react-icons/io";
 
 const Settings = () => {
     const settingsRef = useRef<HTMLDialogElement | null>(null);
+    // General
     const [alarmSound, setAlarmSound] = useState('Classic');
     const [volume, setVolume] = useState(1);
+
+    // Flowtime
     const [breakTimeMultiplier, setBreakTimeMultiplier] = useState(0.2);
     const [autostartTimers, setAutostartTimers] = useState(false);
+
+    // Pomodoro
+    const [focusTime, setFocusTime] = useState(25);
+    const [shortBreakTime, setShortBreakTime] = useState(5);
+    const [longBreakTime, setLongBreakTime] = useState(15);
 
     const handleOpen = () => {
         if (settingsRef.current) {
@@ -16,6 +24,9 @@ const Settings = () => {
             const savedVolume = localStorage.getItem('volume') || volume.toString();
             const savedBreakTimeMultiplier = localStorage.getItem('breakTimeMultiplier') || breakTimeMultiplier.toString();
             const savedAutostartTimers = localStorage.getItem('autostartTimers') || autostartTimers.toString();
+            const savedFocusTime = localStorage.getItem('focusTime') || focusTime.toString();
+            const savedShortBreakTime = localStorage.getItem('shortBreakTime') || shortBreakTime.toString();
+            const savedLongBreakTime = localStorage.getItem('longBreakTime') || longBreakTime.toString();
             if (savedAlarmSound) {
                 setAlarmSound(savedAlarmSound);
             }
@@ -27,6 +38,15 @@ const Settings = () => {
             }
             if (savedAutostartTimers) {
                 setAutostartTimers(savedAutostartTimers === 'true');
+            }
+            if (savedFocusTime) {
+                setFocusTime(parseInt(savedFocusTime));
+            }
+            if (savedShortBreakTime) {
+                setShortBreakTime(parseInt(savedShortBreakTime));
+            }
+            if (savedLongBreakTime) {
+                setLongBreakTime(parseInt(savedLongBreakTime));
             }
         }
     }
@@ -64,7 +84,14 @@ const Settings = () => {
                     <h3>Autostart Timers</h3>
                     <p className="text-xs mb-2">Autostart timer when switching between focus and break (Default: false)</p>
                     <input type="checkbox" className="toggle" checked={autostartTimers} onChange={(e) => setAutostartTimers(e.target.checked)} />
-
+                    <h2 className='font-bold mb-2'>Pomodoro</h2>
+                    <h3 className='mb-2'>Intervals (minutes)</h3>
+                    <p className="text-xs mb-2">Focus</p>
+                    <input type="number" className="input input-bordered w-full mb-4" value={focusTime} />
+                    <p className="text-xs mb-2">Short Break</p>
+                    <input type="number" className="input input-bordered w-full mb-4" value={shortBreakTime} />
+                    <p className="text-xs mb-2">Long Break</p>
+                    <input type="number" className="input input-bordered w-full mb-4" value={longBreakTime} />
                     <div className="modal-action">
                         <form method="dialog">
                             <button className="btn btn-primary" onClick={handleSave}>Save</button>
