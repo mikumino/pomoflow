@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import FlowtimeFocus from './FlowtimeFocus';
 import FlowtimeBreak from './FlowtimeBreak';
+import alarm from '../assets/Alarm.mp3';
+import higurashi from '../assets/Higurashi.mp3';
 
 const App = () => {
     const [mode, setMode] = useState<'Focus' | 'Break'>('Focus');
     const [breakTime, setBreakTime] = useState(0);
+    const alarmSounds = {
+        Classic: alarm,
+        Higurashi: higurashi,
+    };
 
     const handleEndFocus = (focusTime: number) => {
         var savedMultiplier = localStorage.getItem('breakTimeMultiplier');
@@ -20,6 +26,8 @@ const App = () => {
     };
 
     const handleEndBreak = () => {
+        var alarmSound = localStorage.getItem('alarmSound');
+        new Audio(alarmSounds[alarmSound as keyof typeof alarmSounds]).play();
         setMode('Focus');
     };
 
