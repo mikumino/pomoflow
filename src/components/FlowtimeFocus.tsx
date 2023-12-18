@@ -9,7 +9,7 @@ interface FlowTimeFocusProps {
 const FlowtimeFocus = ({ handleEndFocus }: FlowTimeFocusProps) => {
     const [time, setTime] = useState(0);
     const [startTime, setStartTime] = useState(Date.now() - time);
-    const [isRunning, setIsRunning] = useState(localStorage.getItem('autostartTimers') === 'true' ? true : false);
+    const [isRunning, setIsRunning] = useState(typeof window !== 'undefined' && window.localStorage.getItem('isRunning') === 'true' ? true : false);
 
     useEffect(() => {
         let interval: NodeJS.Timeout | null = null;

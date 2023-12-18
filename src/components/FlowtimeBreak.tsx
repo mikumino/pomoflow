@@ -10,7 +10,7 @@ interface FlowtimeBreakProps {
 const FlowtimeBreak = ({ breakTime, handleEndBreak }: FlowtimeBreakProps) => {
     const [timeRemaining, setTimeRemaining] = useState(breakTime);
     const [endTime, setEndTime] = useState(Date.now() + breakTime);
-    const [isRunning, setIsRunning] = useState(localStorage.getItem('autostartTimers') === 'true' ? true : false);
+    const [isRunning, setIsRunning] = useState(typeof window !== 'undefined' && window.localStorage.getItem('isRunning') === 'true' ? true : false);
 
     useEffect(() => {
         let interval: NodeJS.Timeout | null = null;
