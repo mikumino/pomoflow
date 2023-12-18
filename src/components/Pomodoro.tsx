@@ -12,7 +12,12 @@ const Pomodoro = ({ playAlarm }: PomodoroProps) => {
     const handleEndFocus = () => {
         document.title = 'PomoFlow';
         playAlarm();
-        setMode('Short Break');
+        var savedLongBreakIntervals = localStorage.getItem('longBreakIntervals') || '4';
+        if (numIntervals % parseInt(savedLongBreakIntervals) === 0) {
+            setMode('Long Break');
+        } else {
+            setMode('Short Break');
+        }
     };
     const handleEndShortBreak = () => {
         document.title = 'PomoFlow';
