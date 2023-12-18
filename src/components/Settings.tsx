@@ -4,17 +4,23 @@ import { IoIosSettings } from "react-icons/io";
 const Settings = () => {
     const settingsRef = useRef<HTMLDialogElement | null>(null);
     const [alarmSound, setAlarmSound] = useState('Classic');
+    const [volume, setVolume] = useState(1);
     const [breakTimeMultiplier, setBreakTimeMultiplier] = useState(0.2);
     const [autostartTimers, setAutostartTimers] = useState(false);
 
     const handleOpen = () => {
         if (settingsRef.current) {
             settingsRef.current.showModal();
-            const savedAlarmSound = localStorage.getItem('alarmSound');
-            const savedBreakTimeMultiplier = localStorage.getItem('breakTimeMultiplier');
-            const savedAutostartTimers = localStorage.getItem('autostartTimers');
+            // stupid but works CHANGE LATER
+            const savedAlarmSound = localStorage.getItem('alarmSound') || alarmSound;
+            const savedVolume = localStorage.getItem('volume') || volume.toString();
+            const savedBreakTimeMultiplier = localStorage.getItem('breakTimeMultiplier') || breakTimeMultiplier.toString();
+            const savedAutostartTimers = localStorage.getItem('autostartTimers') || autostartTimers.toString();
             if (savedAlarmSound) {
                 setAlarmSound(savedAlarmSound);
+            }
+            if (savedVolume) {
+                setVolume(parseFloat(savedVolume));
             }
             if (savedBreakTimeMultiplier) {
                 setBreakTimeMultiplier(parseFloat(savedBreakTimeMultiplier));
@@ -27,6 +33,7 @@ const Settings = () => {
 
     const handleSave = () => {
         localStorage.setItem('alarmSound', alarmSound);
+        localStorage.setItem('volume', volume.toString());
         localStorage.setItem('breakTimeMultiplier', breakTimeMultiplier.toString());
         localStorage.setItem('autostartTimers', autostartTimers.toString());
     }
@@ -46,6 +53,10 @@ const Settings = () => {
                         <option>Classic</option>
                         <option>Higurashi</option>
                     </select>
+                    <h3>Volume</h3>
+                    <p className="text-xs mb-2">The volume of sound effects</p>
+                    <p className="text-xs mb-2">Current volume: {Math.floor(volume*100)}%</p>
+                    <input type="range" className="range range-primary w-full mb-4 " min="0" max="1" step="0.01" value={volume} onChange={(e) => setVolume(parseFloat(e.target.value))} />
                     <h2 className="font-bold mb-2">Flowtime</h2>
                     <h3>Break Time Multiplier</h3>
                     <p className="text-xs mb-2">The number multiplied against focus time to get break time (Default: 0.2)</p>
