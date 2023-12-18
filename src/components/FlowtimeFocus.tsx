@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import TimeDisplay from './TimeDisplay';
 import Controls from './Controls';
 import tick from '../assets/Tick.mp3';
+import { formatTime } from '../utils/timeUtils';
 
 interface FlowTimeFocusProps {
     handleEndFocus: (focusTime: number) => void;
@@ -13,8 +14,10 @@ const FlowtimeFocus = ({ handleEndFocus }: FlowTimeFocusProps) => {
     const [isRunning, setIsRunning] = useState(typeof window !== 'undefined' && window.localStorage.getItem('isRunning') === 'true' ? true : false);
 
     useEffect(() => {
+        document.title = 'PomoFlow';
         let interval: NodeJS.Timeout | null = null;
         if (isRunning) {
+            document.title = `${formatTime(time)} - Focus`;
             interval = setInterval(() => {
                 setTime((time) => Date.now() - startTime);
             }, 10);

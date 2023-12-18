@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import TimeDisplay from './TimeDisplay';
 import Controls from './Controls';
 import tick from '../assets/Tick.mp3';
+import { formatTime } from '../utils/timeUtils';
 
 
 interface FlowtimeBreakProps {
@@ -16,8 +17,10 @@ const FlowtimeBreak = ({ breakTime, handleEndBreak }: FlowtimeBreakProps) => {
 
 
     useEffect(() => {
+        document.title = 'PomoFlow';
         let interval: NodeJS.Timeout | null = null;
         if (isRunning && timeRemaining > 0) {
+            document.title = `${formatTime(timeRemaining)} - Break`;
             interval = setInterval(() => {
                 setTimeRemaining((timeRemaining) => endTime - Date.now());
             }, 10);
