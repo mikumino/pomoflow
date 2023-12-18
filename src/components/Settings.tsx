@@ -15,6 +15,7 @@ const Settings = () => {
     const [focusTime, setFocusTime] = useState(25);
     const [shortBreakTime, setShortBreakTime] = useState(5);
     const [longBreakTime, setLongBreakTime] = useState(15);
+    const [longBreakIntervals, setLongBreakIntervals] = useState(4);
 
     const handleOpen = () => {
         if (settingsRef.current) {
@@ -27,6 +28,7 @@ const Settings = () => {
             const savedFocusTime = localStorage.getItem('focusTime') || focusTime.toString();
             const savedShortBreakTime = localStorage.getItem('shortBreakTime') || shortBreakTime.toString();
             const savedLongBreakTime = localStorage.getItem('longBreakTime') || longBreakTime.toString();
+            const savedLongBreakIntervals = localStorage.getItem('longBreakIntervals') || longBreakIntervals.toString();
             if (savedAlarmSound) {
                 setAlarmSound(savedAlarmSound);
             }
@@ -48,6 +50,9 @@ const Settings = () => {
             if (savedLongBreakTime) {
                 setLongBreakTime(parseInt(savedLongBreakTime));
             }
+            if (savedLongBreakIntervals) {
+                setLongBreakIntervals(parseInt(savedLongBreakIntervals));
+            }
         }
     }
 
@@ -59,6 +64,7 @@ const Settings = () => {
         localStorage.setItem('focusTime', focusTime.toString());
         localStorage.setItem('shortBreakTime', shortBreakTime.toString());
         localStorage.setItem('longBreakTime', longBreakTime.toString());
+        localStorage.setItem('longBreakIntervals', longBreakIntervals.toString());
     }
 
     return (
@@ -95,6 +101,9 @@ const Settings = () => {
                     <input type="number" className="input input-bordered w-full mb-4" value={shortBreakTime} onChange={(e) => setShortBreakTime(parseInt(e.target.value))} />
                     <p className="text-xs mb-2">Long Break</p>
                     <input type="number" className="input input-bordered w-full mb-4" value={longBreakTime} onChange={(e) => setLongBreakTime(parseInt(e.target.value))} />
+                    <h3>Long Break Intervals</h3>
+                    <p className="text-xs mb-2">The number of intervals before a long break (Default: 4)</p>
+                    <input type="number" className="input input-bordered w-full mb-4" value={longBreakIntervals} onChange={(e) => setLongBreakIntervals(parseInt(e.target.value))}/>
                     <div className="modal-action">
                         <form method="dialog">
                             <button className="btn btn-primary" onClick={handleSave}>Save</button>
