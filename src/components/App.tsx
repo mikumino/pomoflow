@@ -35,7 +35,6 @@ const App = () => {
 
     const handleEndBreak = () => {
         document.title = 'PomoFlow';
-        var alarmSound = localStorage.getItem('alarmSound');
         playAlarm();
         setMode('Focus');
     };
