@@ -8,13 +8,14 @@ interface FlowTimeFocusProps {
 
 const FlowtimeFocus = ({ handleEndFocus }: FlowTimeFocusProps) => {
     const [time, setTime] = useState(0);
+    const [startTime, setStartTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
 
     useEffect(() => {
         let interval: NodeJS.Timeout | null = null;
         if (isRunning) {
             interval = setInterval(() => {
-                setTime((time) => time + 10);
+                setTime((time) => Date.now() - startTime);
             }, 10);
         } else if (!isRunning && time !== 0) {
             if (interval) {
@@ -22,9 +23,12 @@ const FlowtimeFocus = ({ handleEndFocus }: FlowTimeFocusProps) => {
             }
         }
         return () => clearInterval(interval as NodeJS.Timeout);
-    }, [isRunning, time]);
+    }, [isRunning, time, startTime]);
 
     const handleStart = () => {
+        if (!isRunning) {
+            setStartTime(Date.now() - time);
+        }
         setIsRunning(!isRunning);
     };
 
@@ -33,6 +37,7 @@ const FlowtimeFocus = ({ handleEndFocus }: FlowTimeFocusProps) => {
     };
 
     const handleReset = () => {
+        setStartTime(0);
         setTime(0);
     };
 
