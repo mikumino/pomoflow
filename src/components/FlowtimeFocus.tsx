@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import TimeDisplay from './TimeDisplay';
 import Controls from './Controls';
+import tick from '../assets/Tick.mp3';
 
 interface FlowTimeFocusProps {
     handleEndFocus: (focusTime: number) => void;
@@ -26,6 +27,7 @@ const FlowtimeFocus = ({ handleEndFocus }: FlowTimeFocusProps) => {
     }, [isRunning, time, startTime]);
 
     const handleStart = () => {
+        new Audio(tick).play();
         if (!isRunning) {
             setStartTime(Date.now() - time);
         }
@@ -33,10 +35,12 @@ const FlowtimeFocus = ({ handleEndFocus }: FlowTimeFocusProps) => {
     };
 
     const handleStop = () => {
+        new Audio(tick).play();
         handleEndFocus(time);
     };
 
     const handleReset = () => {
+        new Audio(tick).play();
         setStartTime(0);
         setTime(0);
     };

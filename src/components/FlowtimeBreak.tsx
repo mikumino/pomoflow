@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import TimeDisplay from './TimeDisplay';
 import Controls from './Controls';
+import tick from '../assets/Tick.mp3';
+
 
 interface FlowtimeBreakProps {
     breakTime: number;
@@ -29,15 +31,18 @@ const FlowtimeBreak = ({ breakTime, handleEndBreak }: FlowtimeBreakProps) => {
     }, [isRunning, timeRemaining]);
 
     const handleStart = () => {
+        new Audio(tick).play();
         if (!isRunning) {
             setEndTime(Date.now() + timeRemaining);
         }
         setIsRunning(!isRunning);
     };
     const handleStop = () => {
+        new Audio(tick).play();
         handleEndBreak();
     }
     const handleReset = () => {
+        new Audio(tick).play();
         setTimeRemaining(breakTime);
     };
 
