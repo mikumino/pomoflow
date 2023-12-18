@@ -56,6 +56,9 @@ const Settings = () => {
         localStorage.setItem('volume', volume.toString());
         localStorage.setItem('breakTimeMultiplier', breakTimeMultiplier.toString());
         localStorage.setItem('autostartTimers', autostartTimers.toString());
+        localStorage.setItem('focusTime', focusTime.toString());
+        localStorage.setItem('shortBreakTime', shortBreakTime.toString());
+        localStorage.setItem('longBreakTime', longBreakTime.toString());
     }
 
     return (
@@ -87,11 +90,11 @@ const Settings = () => {
                     <h2 className='font-bold mb-2'>Pomodoro</h2>
                     <h3 className='mb-2'>Intervals (minutes)</h3>
                     <p className="text-xs mb-2">Focus</p>
-                    <input type="number" className="input input-bordered w-full mb-4" value={focusTime} />
+                    <input type="number" className="input input-bordered w-full mb-4" value={focusTime} onChange={(e) => setFocusTime(parseInt(e.target.value))} />
                     <p className="text-xs mb-2">Short Break</p>
-                    <input type="number" className="input input-bordered w-full mb-4" value={shortBreakTime} />
+                    <input type="number" className="input input-bordered w-full mb-4" value={shortBreakTime} onChange={(e) => setShortBreakTime(parseInt(e.target.value))} />
                     <p className="text-xs mb-2">Long Break</p>
-                    <input type="number" className="input input-bordered w-full mb-4" value={longBreakTime} />
+                    <input type="number" className="input input-bordered w-full mb-4" value={longBreakTime} onChange={(e) => setLongBreakTime(parseInt(e.target.value))} />
                     <div className="modal-action">
                         <form method="dialog">
                             <button className="btn btn-primary" onClick={handleSave}>Save</button>
