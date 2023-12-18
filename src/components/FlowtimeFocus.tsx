@@ -26,8 +26,15 @@ const FlowtimeFocus = ({ handleEndFocus }: FlowTimeFocusProps) => {
         return () => clearInterval(interval as NodeJS.Timeout);
     }, [isRunning, time, startTime]);
 
+    const playSound = () => {
+        const audio = new Audio(tick);
+        // Volume set here so that Settings updates are reflected immediately
+        audio.volume = typeof window !== 'undefined' ? parseFloat(window.localStorage.getItem('volume') || '1') : 1;
+        audio.play();
+    }
+
     const handleStart = () => {
-        new Audio(tick).play();
+        playSound();
         if (!isRunning) {
             setStartTime(Date.now() - time);
         }
@@ -35,12 +42,12 @@ const FlowtimeFocus = ({ handleEndFocus }: FlowTimeFocusProps) => {
     };
 
     const handleStop = () => {
-        new Audio(tick).play();
+        playSound();
         handleEndFocus(time);
     };
 
     const handleReset = () => {
-        new Audio(tick).play();
+        playSound();
         setStartTime(0);
         setTime(0);
     };

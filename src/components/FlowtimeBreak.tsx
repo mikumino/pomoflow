@@ -14,6 +14,7 @@ const FlowtimeBreak = ({ breakTime, handleEndBreak }: FlowtimeBreakProps) => {
     const [endTime, setEndTime] = useState(Date.now() + breakTime);
     const [isRunning, setIsRunning] = useState(typeof window !== 'undefined' && window.localStorage.getItem('isRunning') === 'true' ? true : false);
 
+
     useEffect(() => {
         let interval: NodeJS.Timeout | null = null;
         if (isRunning && timeRemaining > 0) {
@@ -30,19 +31,26 @@ const FlowtimeBreak = ({ breakTime, handleEndBreak }: FlowtimeBreakProps) => {
         return () => clearInterval(interval as NodeJS.Timeout);
     }, [isRunning, timeRemaining]);
 
+    const playSound = () => {
+        const audio = new Audio(tick);
+        // Volume set here so that Settings updates are reflected immediately
+        audio.volume = typeof window !== 'undefined' ? parseFloat(window.localStorage.getItem('volume') || '1') : 1;
+        audio.play();
+    }
+
     const handleStart = () => {
-        new Audio(tick).play();
+        playSound();
         if (!isRunning) {
             setEndTime(Date.now() + timeRemaining);
         }
         setIsRunning(!isRunning);
     };
     const handleStop = () => {
-        new Audio(tick).play();
+        playSound();
         handleEndBreak();
     }
     const handleReset = () => {
-        new Audio(tick).play();
+        playSound();
         setTimeRemaining(breakTime);
     };
 

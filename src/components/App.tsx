@@ -12,6 +12,13 @@ const App = () => {
         Higurashi: higurashi,
     };
 
+    const playAlarm = () => {
+        var alarmSound = localStorage.getItem('alarmSound');
+        const audio = new Audio(alarmSounds[alarmSound as keyof typeof alarmSounds]);
+        audio.volume = typeof window !== 'undefined' ? parseFloat(window.localStorage.getItem('volume') || '1') : 1;
+        audio.play();
+    }
+
     const handleEndFocus = (focusTime: number) => {
         var savedMultiplier = localStorage.getItem('breakTimeMultiplier');
         var breakTimeMultiplier;
@@ -27,7 +34,7 @@ const App = () => {
 
     const handleEndBreak = () => {
         var alarmSound = localStorage.getItem('alarmSound');
-        new Audio(alarmSounds[alarmSound as keyof typeof alarmSounds]).play();
+        playAlarm();
         setMode('Focus');
     };
 
