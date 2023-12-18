@@ -16,8 +16,8 @@ const FlowtimeBreak = ({ breakTime, handleEndBreak }: FlowtimeBreakProps) => {
     const [isRunning, setIsRunning] = useState(typeof window !== 'undefined' && window.localStorage.getItem('isRunning') === 'true' ? true : false);
 
 
+    document.title = 'PomoFlow';
     useEffect(() => {
-        document.title = 'PomoFlow';
         let interval: NodeJS.Timeout | null = null;
         if (isRunning && timeRemaining > 0) {
             document.title = `${formatTime(timeRemaining)} - Break`;

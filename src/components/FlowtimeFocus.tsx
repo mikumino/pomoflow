@@ -13,8 +13,8 @@ const FlowtimeFocus = ({ handleEndFocus }: FlowTimeFocusProps) => {
     const [startTime, setStartTime] = useState(Date.now() - time);
     const [isRunning, setIsRunning] = useState(typeof window !== 'undefined' && window.localStorage.getItem('isRunning') === 'true' ? true : false);
 
+    document.title = 'PomoFlow';
     useEffect(() => {
-        document.title = 'PomoFlow';
         let interval: NodeJS.Timeout | null = null;
         if (isRunning) {
             document.title = `${formatTime(time)} - Focus`;
