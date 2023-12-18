@@ -18,7 +18,7 @@ const PomoFlowSwitcher = () => {
     }
 
     return (
-        <label className="swap swap-rotate btn btn-ghost mr-1">
+        <label className="swap swap-rotate btn btn-ghost">
             <input type="checkbox" className="theme-controller" value="sunset" checked={isPomo} onChange={handleModeChange}  />
             <span className="swap-off">💧</span>
             <span className="swap-on">🍅</span>

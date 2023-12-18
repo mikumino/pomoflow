@@ -14,12 +14,13 @@ const App = () => {
 
     const playAlarm = () => {
         var alarmSound = localStorage.getItem('alarmSound');
-        const audio = new Audio(alarmSounds[alarmSound as keyof typeof alarmSounds]);
+        const audio = new Audio(alarmSounds[alarmSound as keyof typeof alarmSounds] || alarmSounds['Classic']);
         audio.volume = typeof window !== 'undefined' ? parseFloat(window.localStorage.getItem('volume') || '1') : 1;
         audio.play();
     }
 
     const handleEndFocus = (focusTime: number) => {
+        document.title = 'PomoFlow';
         var savedMultiplier = localStorage.getItem('breakTimeMultiplier');
         var breakTimeMultiplier;
         if (savedMultiplier) {
@@ -33,6 +34,7 @@ const App = () => {
     };
 
     const handleEndBreak = () => {
+        document.title = 'PomoFlow';
         var alarmSound = localStorage.getItem('alarmSound');
         playAlarm();
         setMode('Focus');
