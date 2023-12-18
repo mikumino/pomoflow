@@ -9,13 +9,14 @@ interface FlowtimeBreakProps {
 
 const FlowtimeBreak = ({ breakTime, handleEndBreak }: FlowtimeBreakProps) => {
     const [timeRemaining, setTimeRemaining] = useState(breakTime);
+    const [endTime, setEndTime] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
 
     useEffect(() => {
         let interval: NodeJS.Timeout | null = null;
         if (isRunning && timeRemaining > 0) {
             interval = setInterval(() => {
-                setTimeRemaining((timeRemaining) => timeRemaining - 10);
+                setTimeRemaining((timeRemaining) => endTime - Date.now());
             }, 10);
         } else if (!isRunning && timeRemaining !== 0) {
             if (interval) {
@@ -28,6 +29,9 @@ const FlowtimeBreak = ({ breakTime, handleEndBreak }: FlowtimeBreakProps) => {
     }, [isRunning, timeRemaining]);
 
     const handleStart = () => {
+        if (!isRunning) {
+            setEndTime(Date.now() + timeRemaining);
+        }
         setIsRunning(!isRunning);
     };
     const handleStop = () => {
