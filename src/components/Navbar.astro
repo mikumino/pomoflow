@@ -1,0 +1,18 @@
+---
+import Settings from "./Settings";
+import { Image } from "astro:assets";
+import pomoflow from  "../assets/pomoflow.png";
+---
+
+<div class="navbar absolute max-w-3xl mx-auto">
+    <div class="navbar-start">
+        <div class="btn btn-ghost">
+            <a href="/" class="text-xl font-black flex items-center"><Image src={pomoflow} alt="logo" class="w-6 mr-2" />Pomo<span class="text-primary">Flow</span></a>
+        </div>
+    </div>
+    <div class="navbar-center">
+    </div>
+    <div class="navbar-end">
+        <Settings client:load/>
+    </div>
+</div>

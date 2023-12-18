@@ -1,19 +1,20 @@
 ---
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar.astro'
 import App from '../components/App'
+import icon from "/favicon.ico"
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href={icon} type="image/x-icon" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>PomoFlow</title>
         <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 	</head>
 	<body class="max-w-3xl mx-auto h-screen flex flex-col">
-        <Navbar client:load />
+        <Navbar />
 		<main class="flex justify-center items-center flex-grow">
             <App client:load />
         </main>
