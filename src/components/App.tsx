@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import FlowtimeFocus from './FlowtimeFocus';
 import FlowtimeBreak from './FlowtimeBreak';
 
