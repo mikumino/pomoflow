@@ -21,14 +21,14 @@ const Settings = () => {
         if (settingsRef.current) {
             settingsRef.current.showModal();
             // stupid but works CHANGE LATER
-            const savedAlarmSound = localStorage.getItem('alarmSound') || alarmSound;
-            const savedVolume = localStorage.getItem('volume') || volume.toString();
-            const savedBreakTimeMultiplier = localStorage.getItem('breakTimeMultiplier') || breakTimeMultiplier.toString();
-            const savedAutostartTimers = localStorage.getItem('autostartTimers') || autostartTimers.toString();
-            const savedFocusTime = localStorage.getItem('focusTime') || focusTime.toString();
-            const savedShortBreakTime = localStorage.getItem('shortBreakTime') || shortBreakTime.toString();
-            const savedLongBreakTime = localStorage.getItem('longBreakTime') || longBreakTime.toString();
-            const savedLongBreakIntervals = localStorage.getItem('longBreakIntervals') || longBreakIntervals.toString();
+            const savedAlarmSound = localStorage.getItem('alarmSound') || 'Classic';
+            const savedVolume = localStorage.getItem('volume') || '1';
+            const savedBreakTimeMultiplier = localStorage.getItem('breakTimeMultiplier') || '0.2';
+            const savedAutostartTimers = localStorage.getItem('autostartTimers') || 'false';
+            const savedFocusTime = localStorage.getItem('focusTime') || '25';
+            const savedShortBreakTime = localStorage.getItem('shortBreakTime') || '5';
+            const savedLongBreakTime = localStorage.getItem('longBreakTime') || '15';
+            const savedLongBreakIntervals = localStorage.getItem('longBreakIntervals') || '4';
             if (savedAlarmSound) {
                 setAlarmSound(savedAlarmSound);
             }
