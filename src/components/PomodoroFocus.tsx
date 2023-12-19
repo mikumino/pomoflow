@@ -11,7 +11,7 @@ interface PomodoroFocusProps {
 const PomodoroFocus = ({ handleEndFocus }: PomodoroFocusProps) => {
     const [timeRemaining, setTimeRemaining] = useState(typeof window !== 'undefined' && window.localStorage.getItem('focusTime') ? parseInt(window.localStorage.getItem('focusTime') || '25') * 60 * 1000 : 25 * 60 * 1000);
     const [endTime, setEndTime] = useState(Date.now() + timeRemaining);
-    const [isRunning, setIsRunning] = useState(typeof window !== 'undefined' && window.localStorage.getItem('isRunning') === 'true' ? true : false);
+    const [isRunning, setIsRunning] = useState(typeof window !== 'undefined' && window.localStorage.getItem('autostartTimers') === 'true' ? true : false);
 
     useEffect(() => {
         let interval: NodeJS.Timeout | null = null;
