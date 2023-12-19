@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import TimeDisplay from './TimeDisplay';
 import Controls from './Controls';
-import tick from '../assets/Tick.mp3';
+import tick from '../assets/tick.mp3';
 import { formatTime } from '../utils/timeUtils';
 
 

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Flowtime from './Flowtime';
 import Pomodoro from './Pomodoro';
-import alarm from '../assets/Alarm.mp3';
-import higurashi from '../assets/Higurashi.mp3';
+import alarm from '../assets/alarm.mp3';
+import higurashi from '../assets/higurashi.mp3';
 
 const App = () => {
     const alarmSounds = {
