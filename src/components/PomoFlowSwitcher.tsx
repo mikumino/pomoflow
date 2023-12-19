@@ -13,13 +13,14 @@ const PomoFlowSwitcher = () => {
     }, [isPomo]);
 
     const handleModeChange = () => {
+        console.log(isPomo);
         localStorage.setItem('pomodoro', isPomo.toString());
         setIsPomo(!isPomo);
     }
 
     return (
         <label className="swap swap-rotate btn btn-ghost">
-            <input type="checkbox" className="theme-controller" value="sunset" checked={isPomo} onChange={handleModeChange}  />
+            <input type="checkbox" className="theme-controller" value="sunset" checked={isPomo} onChange={handleModeChange} />
             <span className="swap-off">💧</span>
             <span className="swap-on">🍅</span>
         </label>

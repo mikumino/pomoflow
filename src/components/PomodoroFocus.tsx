@@ -9,7 +9,7 @@ interface PomodoroFocusProps {
 }
 
 const PomodoroFocus = ({ handleEndFocus }: PomodoroFocusProps) => {
-    const [timeRemaining, setTimeRemaining] = useState(localStorage.getItem('focusTime') ? parseInt(localStorage.getItem('focusTime') as string) * 60 * 1000 : 25 * 60 * 1000);
+    const [timeRemaining, setTimeRemaining] = useState(typeof window !== 'undefined' && window.localStorage.getItem('focusTime') ? parseInt(window.localStorage.getItem('focusTime') || '25') * 60 * 1000 : 25 * 60 * 1000);
     const [endTime, setEndTime] = useState(Date.now() + timeRemaining);
     const [isRunning, setIsRunning] = useState(typeof window !== 'undefined' && window.localStorage.getItem('isRunning') === 'true' ? true : false);
 

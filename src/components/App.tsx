@@ -10,6 +10,8 @@ const App = () => {
         Higurashi: higurashi,
     };
 
+    const [isPomodoro, setIsPomodoro] = useState(typeof window !== 'undefined' && window.localStorage.getItem('pomodoro') === 'true' ? true : true);
+
     const playAlarm = () => {
         var alarmSound = localStorage.getItem('alarmSound');
         const audio = new Audio(alarmSounds[alarmSound as keyof typeof alarmSounds] || alarmSounds['Classic']);
@@ -17,9 +19,7 @@ const App = () => {
         audio.play();
     }
 
-    return (
-        <Flowtime playAlarm={playAlarm} />
-    );
+    return isPomodoro ? <Pomodoro playAlarm={playAlarm} /> : <Flowtime playAlarm={playAlarm} />;
 }
 
 export default App;

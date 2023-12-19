@@ -8,7 +8,7 @@ interface PomodoroProps {
 
 const Pomodoro = ({ playAlarm }: PomodoroProps) => {
     const [mode, setMode] = useState<'Focus' | 'Short Break' | 'Long Break'>('Focus');
-    const [numIntervals, setNumIntervals] = useState(0);
+    const [numIntervals, setNumIntervals] = useState(1);
     
     const handleEndFocus = () => {
         document.title = 'PomoFlow';
@@ -22,6 +22,7 @@ const Pomodoro = ({ playAlarm }: PomodoroProps) => {
     };
     const handleEndBreak = () => {
         document.title = 'PomoFlow';
+        setNumIntervals(numIntervals + 1);
         playAlarm();
         setMode('Focus');
     };
