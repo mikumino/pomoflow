@@ -27,6 +27,7 @@ const PomodoroFocus = ({ handleEndFocus }: PomodoroFocusProps) => {
         } else if (timeRemaining <= 0) {
             handleEndFocus();
         }
+        return () => clearInterval(interval as NodeJS.Timeout);
     }, [isRunning, timeRemaining]);
 
     const playSound = () => {
