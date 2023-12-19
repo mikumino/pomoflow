@@ -1,5 +1,6 @@
 import { useState } from "react";
-// Import pomodoro components when they are ready
+import PomodoroFocus from "./PomodoroFocus";
+import PomodoroBreak from "./PomodoroBreak";
 
 interface PomodoroProps {
     playAlarm: () => void;
@@ -19,12 +20,7 @@ const Pomodoro = ({ playAlarm }: PomodoroProps) => {
             setMode('Short Break');
         }
     };
-    const handleEndShortBreak = () => {
-        document.title = 'PomoFlow';
-        playAlarm();
-        setMode('Focus');
-    };
-    const handleEndLongBreak = () => {
+    const handleEndBreak = () => {
         document.title = 'PomoFlow';
         playAlarm();
         setMode('Focus');
@@ -40,9 +36,9 @@ const Pomodoro = ({ playAlarm }: PomodoroProps) => {
             {mode === 'Focus' ? (
                 <PomodoroFocus handleEndFocus={handleEndFocus} />
             ) : mode === 'Short Break' ? (
-                <PomodoroShortBreak handleEndShortBreak={handleEndShortBreak} />
+                <PomodoroBreak handleEndBreak={handleEndBreak} numIntervals={numIntervals} />
             ) : (
-                <PomodoroLongBreak handleEndLongBreak={handleEndLongBreak} />
+                <PomodoroBreak handleEndBreak={handleEndBreak} numIntervals={numIntervals} />
             )}
         </div>
     );

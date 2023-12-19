@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Flowtime from './Flowtime';
+import Pomodoro from './Pomodoro';
 import alarm from '../assets/Alarm.mp3';
 import higurashi from '../assets/Higurashi.mp3';
 
 const App = () => {
-    const [breakTime, setBreakTime] = useState(0);
     const alarmSounds = {
         Classic: alarm,
         Higurashi: higurashi,

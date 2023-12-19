@@ -86,13 +86,13 @@ const Settings = () => {
                     <p className="text-xs mb-2">The volume of sound effects</p>
                     <p className="text-xs mb-2">Current volume: {Math.floor(volume*100)}%</p>
                     <input type="range" className="range range-primary w-full mb-4 " min="0" max="1" step="0.01" value={volume} onChange={(e) => setVolume(parseFloat(e.target.value))} />
+                    <h3>Autostart Timers</h3>
+                    <p className="text-xs mb-2">Autostart timer when switching between focus and break (Default: false)</p>
+                    <input type="checkbox" className="toggle" checked={autostartTimers} onChange={(e) => setAutostartTimers(e.target.checked)} />
                     <h2 className="font-bold mb-2">Flowtime</h2>
                     <h3>Break Time Multiplier</h3>
                     <p className="text-xs mb-2">The number multiplied against focus time to get break time (Default: 0.2)</p>
                     <input type="number" className="input input-bordered w-full mb-4" value={breakTimeMultiplier} onChange={(e) => setBreakTimeMultiplier(parseFloat(e.target.value))} />
-                    <h3>Autostart Timers</h3>
-                    <p className="text-xs mb-2">Autostart timer when switching between focus and break (Default: false)</p>
-                    <input type="checkbox" className="toggle" checked={autostartTimers} onChange={(e) => setAutostartTimers(e.target.checked)} />
                     <h2 className='font-bold mb-2'>Pomodoro</h2>
                     <h3 className='mb-2'>Intervals (minutes)</h3>
                     <p className="text-xs mb-2">Focus</p>
