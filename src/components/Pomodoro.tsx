@@ -1,12 +1,15 @@
 import { useState } from "react";
 import PomodoroFocus from "./PomodoroFocus";
 import PomodoroBreak from "./PomodoroBreak";
+import PomoFlowSwitcher from "./PomoFlowSwitcher";
 
 interface PomodoroProps {
     playAlarm: () => void;
+    isPomodoro: boolean;
+    handleModeChange: () => void;
 }
 
-const Pomodoro = ({ playAlarm }: PomodoroProps) => {
+const Pomodoro = ({ playAlarm, isPomodoro, handleModeChange }: PomodoroProps) => {
     const [mode, setMode] = useState<'Focus' | 'Short Break' | 'Long Break'>('Focus');
     const [numIntervals, setNumIntervals] = useState(1);
     
@@ -29,9 +32,10 @@ const Pomodoro = ({ playAlarm }: PomodoroProps) => {
 
     return (
         <div className="flex flex-col items-center justify-center h-screen">
-            <div className='flex flex-row items-center justify-center mb-7'>
-                <h1 className={`btn mr-2 px-11 ${mode === 'Focus' ? 'btn-primary' : 'btn-disabled'}`}>Focus</h1>
-                <h1 className={`btn mr-2 px-11 ${mode === 'Short Break' ? 'btn-primary' : 'btn-disabled'}`}>Short Break</h1>
+            <PomoFlowSwitcher isPomodoro={isPomodoro} handleModeChange={handleModeChange} />
+            <div className='flex flex-row flex-wrap gap-2 items-center justify-center mb-7'>
+                <h1 className={`btn px-11 ${mode === 'Focus' ? 'btn-primary' : 'btn-disabled'}`}>Focus</h1>
+                <h1 className={`btn px-11 ${mode === 'Short Break' ? 'btn-primary' : 'btn-disabled'}`}>Short Break</h1>
                 <h1 className={`btn px-11 ${mode === 'Long Break' ? 'btn-primary' : 'btn-disabled'}`}>Long Break</h1>
             </div>
             {mode === 'Focus' ? (

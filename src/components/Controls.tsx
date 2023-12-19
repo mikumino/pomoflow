@@ -9,7 +9,7 @@ interface ControlsProps {
 
 const Controls = ({ handleStart, handleStop, handleReset, isRunning }: ControlsProps) => {
     return (
-        <div className="flex flex-row items-center justify-center">
+        <div className="flex flex-row items-center justify-center mb-48">
             <button className="btn btn-circle btn-primary mr-4" onClick={handleStart}>
                 {isRunning ? (
                     <FaPause />

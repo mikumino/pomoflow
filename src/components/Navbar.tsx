@@ -13,7 +13,6 @@ const Navbar = () => {
             <div className="navbar-center">
             </div>
             <div className="navbar-end">
-                <PomoFlowSwitcher />
                 <Settings/>
             </div>
         </div>

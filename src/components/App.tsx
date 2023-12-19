@@ -12,6 +12,11 @@ const App = () => {
 
     const [isPomodoro, setIsPomodoro] = useState(typeof window !== 'undefined' && window.localStorage.getItem('pomodoro') === 'true' ? true : false);
 
+    const handleModeChange = () => {
+        setIsPomodoro(!isPomodoro);
+        localStorage.setItem('pomodoro', isPomodoro ? 'false' : 'true');
+    }
+
     const playAlarm = () => {
         var alarmSound = localStorage.getItem('alarmSound');
         const audio = new Audio(alarmSounds[alarmSound as keyof typeof alarmSounds] || alarmSounds['Classic']);
@@ -19,7 +24,7 @@ const App = () => {
         audio.play();
     }
 
-    return isPomodoro ? <Pomodoro playAlarm={playAlarm} /> : <Flowtime playAlarm={playAlarm} />;
+    return isPomodoro ? <Pomodoro playAlarm={playAlarm} isPomodoro={isPomodoro} handleModeChange={handleModeChange}/> : <Flowtime playAlarm={playAlarm} isPomodoro={isPomodoro} handleModeChange={handleModeChange} />;
 }
 
 export default App;
