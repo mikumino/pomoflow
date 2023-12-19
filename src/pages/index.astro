@@ -1,5 +1,5 @@
 ---
-import Navbar from '../components/Navbar.astro'
+import Navbar from '../components/Navbar'
 import App from '../components/App'
 import icon from "/favicon.ico"
 ---
@@ -14,9 +14,9 @@ import icon from "/favicon.ico"
         <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 	</head>
 	<body class="max-w-3xl mx-auto h-screen flex flex-col">
-        <Navbar />
+        <Navbar client:only="react" />
 		<main class="flex justify-center items-center flex-grow">
-            <App client:load />
+            <App client:only="react" />
         </main>
 	</body>
 </html>

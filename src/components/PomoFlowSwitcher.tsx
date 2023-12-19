@@ -1,22 +1,15 @@
 import { useState, useEffect } from 'react'
 
 const PomoFlowSwitcher = () => {
-    const [isPomo, setIsPomo] = useState(false);
-
-    useEffect(() => {
-        var savedPomo = localStorage.getItem('pomodoro');
-        if (savedPomo) {
-            setIsPomo(savedPomo === 'true');
-        } else {
-            setIsPomo(false);
-        }
-    }, [isPomo]);
+    const [isPomo, setIsPomo] = useState(typeof window !== 'undefined' && window.localStorage.getItem('pomodoro') === 'true' ? true : false);
 
     const handleModeChange = () => {
-        console.log(isPomo);
-        localStorage.setItem('pomodoro', isPomo.toString());
+        console.log('handleModeChange');
+        
+        localStorage.setItem('pomodoro', isPomo ? 'false' : 'true');
         setIsPomo(!isPomo);
-    }
+    };
+
 
     return (
         <label className="swap swap-rotate btn btn-ghost">

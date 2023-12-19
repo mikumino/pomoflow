@@ -10,7 +10,7 @@ const App = () => {
         Higurashi: higurashi,
     };
 
-    const [isPomodoro, setIsPomodoro] = useState(typeof window !== 'undefined' && window.localStorage.getItem('pomodoro') === 'true' ? true : true);
+    const [isPomodoro, setIsPomodoro] = useState(typeof window !== 'undefined' && window.localStorage.getItem('pomodoro') === 'true' ? true : false);
 
     const playAlarm = () => {
         var alarmSound = localStorage.getItem('alarmSound');
