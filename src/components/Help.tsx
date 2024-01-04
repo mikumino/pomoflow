@@ -38,7 +38,7 @@ const Help = () => {
                     <p className="mb-4">The default mode of this app is Flowtime. To change modes, press the icon above the time display.</p>
                     <p className='mb-4'>For <span className='text-primary font-bold mb-4'>Flowtime</span>, start the stopwatch and work until your focus has dropped. Press the stop button to end your focus session and switch to break mode. In break mode, press play to start the timer.</p>
                     <p className='mb-4'>For <span className="text-primary font-bold ">Pomodoro</span>, start the timer and focus for the entire duration. The app will handle switching modes for you when the timers expire.</p>
-                    <a href='https://github.com/mikumino/pomoflow' target='_blank'><button className='btn btn-outline btn-primary w-full mb-6'>Source Code <FaGithub /></button>
+                    <a href='https://github.com/mikumino/pomoflow' target='_blank'><button className='btn btn-outline btn-primary w-full my-6'>Source Code <FaGithub /></button>
                     </a>
                     <p className='text-xs text-center'>made by mikumino 💖</p>
                     
