@@ -1,6 +1,5 @@
 import Settings from "./Settings";
-import pomoflow from  "../assets/pomoflow.png";
-
+import Help from "./Help";
 const Navbar = () => {
     return (
         <div className="navbar absolute max-w-3xl mx-auto">
@@ -12,6 +11,7 @@ const Navbar = () => {
             <div className="navbar-center">
             </div>
             <div className="navbar-end">
+                <Help/>
                 <Settings/>
             </div>
         </div>
