@@ -56,7 +56,9 @@ const FlowtimeFocus = ({ handleEndFocus }: FlowTimeFocusProps) => {
 
     return (
         <div className="flex flex-col items-center justify-center">
-            <TimeDisplay time={time} />
+            <div>
+                <TimeDisplay time={time} />
+            </div>
             <Controls handleStart={handleStart} handleStop={handleStop} handleReset={handleReset} isRunning={isRunning} />
         </div>
     );
